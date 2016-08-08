@@ -8,3 +8,4 @@ There are several steps to program the FPGA, first of all is trying to use the l
 
    16accumulator
    fpgadecoder
+   tileprogram

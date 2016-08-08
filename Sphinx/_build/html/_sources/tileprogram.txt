@@ -279,5 +279,3 @@ If the user wants to use other signals or change the order, just change the vect
 A simple list of numbers to program a counter on a Tile:
 
 .. include:: /signals.txt
-
-A good way to plan those signals is using Excel tool.
