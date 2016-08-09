@@ -276,6 +276,10 @@ In this case, we are hardcoding the ports such as "Write_IN0", to be attached to
 
 If the user wants to use other signals or change the order, just change the vector components at the program. There are 2 defines at the beginning which corresponds to the number of Hexadecimals in one tuple minus one, and the number of signals.
 
+After you compile this C program, just attach the signals file and run "./a.out signals.txt". The output will be named "resultfile" and you can include in the SPICE file with ".include 'resultfile'".
+
 A simple list of numbers to program a counter on a Tile:
 
-.. include:: /signals.txt
+https://github.com/YangTavares/origin/blob/master/Sphinx/signals.txt
+
+A good way to plan those signals is using Excel tool, it is possible to download how the previous signals were planned at: https://github.com/YangTavares/origin/blob/master/Sphinx/Research/Tile_Counter_Bigger_order_invout.xlsx

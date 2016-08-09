@@ -32,6 +32,7 @@
   
     <link rel="top" title="CSUEB FPGA 1.0 documentation" href="index.html"/>
         <link rel="up" title="Programming" href="programming.html"/>
+        <link rel="next" title="Using VPR" href="vprprogram.html"/>
         <link rel="prev" title="FPGA Decoder" href="fpgadecoder.html"/> 
 
   
@@ -98,6 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="16accumulator.html">16-bit Accumulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fpgadecoder.html">FPGA Decoder</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Programming a Tile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vprprogram.html">Using VPR</a></li>
 </ul>
 </li>
 </ul>
@@ -637,201 +639,10 @@
 <div class="line">&#8220;B_Decoder&#8221; = 0</div>
 </div>
 <p>If the user wants to use other signals or change the order, just change the vector components at the program. There are 2 defines at the beginning which corresponds to the number of Hexadecimals in one tuple minus one, and the number of signals.</p>
+<p>After you compile this C program, just attach the signals file and run &#8221;./a.out signals.txt&#8221;. The output will be named &#8220;resultfile&#8221; and you can include in the SPICE file with &#8221;.include &#8216;resultfile&#8217;&#8221;.</p>
 <p>A simple list of numbers to program a counter on a Tile:</p>
-<p>C000C40000
-C000F40010
-C000C40010
-C000C40000
-C000840000
-C000C40000
-C000640000
-C000C40000
-4000C00000
-4000F00001
-4000C00001
-0000C00000
-4000800000
-4000C00000
-4000600000
-4000C00000
-4000C10000
-4000F10006
-4000C10006
-4000C10000
-4000810000
-4000C10000
-4000610000
-4000C10000
-4000C20000
-4000F20078
-4000C20078
-4000C20000
-4000820000
-4000C20000
-4000620000
-4000C20000
-4000C30000
-4000F37F80
-4000C37F80
-4000C30000
-4000830000
-4000C30000
-4000630000
-4000C30000
-4000C40000
-4000F40400
-4000C40400
-4000C40000
-4000840000
-4000C40000
-4000640000
-4000C40000
-4000C50000
-4000F50000
-4000C50000
-4000C50000
-4000850000
-4000C50000
-4000650000
-4000C50000
-4000C60000
-4000F60000
-4000C60000
-4000860000
-4000C60000
-4000660000
-4000C60000
-4000C70000
-4000F70000
-4000C70000
-4000870000
-4000C70000
-4000670000
-4000C70000
-4000C80000
-4000F80400
-4000F80400
-4000C80000
-4000880000
-4000C80000
-4000680000
-4000C80000
-4000C90000
-4000F90800
-4000C90800
-4000C90000
-4000890000
-4000C90000
-4000690000
-4000C90000
-4000CA0000
-4000FA0000
-4000CA0000
-40008A0000
-4000CA0000
-40006A0000
-4000CA0000
-4000CB0000
-4000FB0000
-4000CB0000
-40008B0000
-4000CB0000
-40006B0000
-4000CB0000
-4000CC0000
-4000FC0400
-4000CC0400
-4000CC0000
-40008C0000
-4000CC0000
-40006C0000
-4000CC0000
-4000CD0000
-4000FD0800
-4000CD0800
-4000CD0000
-40008D0000
-4000CD0000
-40006D0000
-4000CD0000
-4000CE0000
-4000FE1000
-4000CE1000
-4000CE0000
-40008E0000
-4000CE0000
-40006E0000
-4000CE0000
-4000CF0000
-4000FF0000
-4000CF0000
-40008F0000
-4000CF0000
-40006F0000
-4000CF0000
-C000C00000
-C000F00400
-C000C00400
-C000C00000
-C000800000
-C000C00000
-C000600000
-C000C00000
-C000C10000
-C000F10800
-C000C10800
-C000C10000
-C000810000
-C000C10000
-C000610000
-C000C10000
-C000C20000
-C000F21000
-C000C21000
-C000C20000
-C000820000
-C000C20000
-C000620000
-C000C20000
-C000C30000
-C000F32000
-C000C32000
-C000C30000
-C000830000
-C000C30000
-C000630000
-C000C30000
-4000C00000
-0000C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000
-4400C00000
-4000C00000</p>
+<p><a class="reference external" href="https://github.com/YangTavares/origin/blob/master/Sphinx/signals.txt">https://github.com/YangTavares/origin/blob/master/Sphinx/signals.txt</a></p>
+<p>A good way to plan those signals is using Excel tool, it is possible to download how the previous signals were planned at: <a class="reference external" href="https://github.com/YangTavares/origin/blob/master/Sphinx/Research/Tile_Counter_Bigger_order_invout.xlsx">https://github.com/YangTavares/origin/blob/master/Sphinx/Research/Tile_Counter_Bigger_order_invout.xlsx</a></p>
 </div>
 
 
@@ -840,6 +651,8 @@ C000C30000
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vprprogram.html" class="btn btn-neutral float-right" title="Using VPR" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="fpgadecoder.html" class="btn btn-neutral" title="FPGA Decoder" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

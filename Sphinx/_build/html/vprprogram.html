@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>16-bit Accumulator &mdash; CSUEB FPGA 1.0 documentation</title>
+  <title>Using VPR &mdash; CSUEB FPGA 1.0 documentation</title>
   
 
   
@@ -32,8 +32,7 @@
   
     <link rel="top" title="CSUEB FPGA 1.0 documentation" href="index.html"/>
         <link rel="up" title="Programming" href="programming.html"/>
-        <link rel="next" title="FPGA Decoder" href="fpgadecoder.html"/>
-        <link rel="prev" title="Programming" href="programming.html"/> 
+        <link rel="prev" title="Programming a Tile" href="tileprogram.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -96,10 +95,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="programming.html">Programming</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">16-bit Accumulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16accumulator.html">16-bit Accumulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fpgadecoder.html">FPGA Decoder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tileprogram.html">Programming a Tile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vprprogram.html">Using VPR</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using VPR</a></li>
 </ul>
 </li>
 </ul>
@@ -134,11 +133,11 @@
       
           <li><a href="programming.html">Programming</a> &raquo;</li>
       
-    <li>16-bit Accumulator</li>
+    <li>Using VPR</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/16accumulator.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/vprprogram.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -148,16 +147,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="bit-accumulator">
-<h1>16-bit Accumulator<a class="headerlink" href="#bit-accumulator" title="Permalink to this headline">¶</a></h1>
-<p>A 16-bit Accumulator is used to interface with the &#8220;Write INs&#8221; of the SRAM manager, it is going to reduce the Inputs needed to program the SRAM cells at the FPGA. Also, it is important to have a way to choose which SRAM cells you want to program per time and how to choose then. At the end, use a software to translate your Verilog program into a Place and Route file that will be transformed into our programming logic for the FPGA.</p>
-<img alt="_images/16accumulator.png" src="_images/16accumulator.png" />
-<p>(Schematic taken from Sue)</p>
-<p>This piece is made of 16 full-adders and flip-flops, each time the clock rises the input bits are added with the previous value.</p>
-<img alt="_images/closer_adder.png" src="_images/closer_adder.png" />
-<p>(Schematic taken from Sue)</p>
-<img alt="_images/16_inside.png" src="_images/16_inside.png" />
-<p>(Schematic taken from Sue)</p>
+  <div class="section" id="using-vpr">
+<h1>Using VPR<a class="headerlink" href="#using-vpr" title="Permalink to this headline">¶</a></h1>
+<p>&#8220;VPR is a placement and routing tool for array-based FPGAs, and T-VPack is a logic block packing (clustering) program. VPR was written to allow circuits to be placed and routed on a wide variety of FPGAs to facilitate comparisons of different architectures. It takes two input files, a netlist describing the circuit to be placed and routed, and a description of the FPGA architecture. Optionally, one can also input a placement file to VPR if one desires that an existing placement be routed only.&#8221; - <a class="reference external" href="http://www.eecg.toronto.edu/~vaughn/vpr/vpr.html">http://www.eecg.toronto.edu/~vaughn/vpr/vpr.html</a></p>
 </div>
 
 
@@ -167,10 +159,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="fpgadecoder.html" class="btn btn-neutral float-right" title="FPGA Decoder" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="programming.html" class="btn btn-neutral" title="Programming" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tileprogram.html" class="btn btn-neutral" title="Programming a Tile" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
