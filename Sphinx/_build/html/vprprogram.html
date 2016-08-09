@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using VPR &mdash; CSUEB FPGA 1.0 documentation</title>
+  <title>Using VTR &mdash; CSUEB FPGA 1.0 documentation</title>
   
 
   
@@ -98,7 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="16accumulator.html">16-bit Accumulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fpgadecoder.html">FPGA Decoder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tileprogram.html">Programming a Tile</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Using VPR</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using VTR</a></li>
 </ul>
 </li>
 </ul>
@@ -133,7 +133,7 @@
       
           <li><a href="programming.html">Programming</a> &raquo;</li>
       
-    <li>Using VPR</li>
+    <li>Using VTR</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -147,9 +147,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="using-vpr">
-<h1>Using VPR<a class="headerlink" href="#using-vpr" title="Permalink to this headline">¶</a></h1>
-<p>&#8220;VPR is a placement and routing tool for array-based FPGAs, and T-VPack is a logic block packing (clustering) program. VPR was written to allow circuits to be placed and routed on a wide variety of FPGAs to facilitate comparisons of different architectures. It takes two input files, a netlist describing the circuit to be placed and routed, and a description of the FPGA architecture. Optionally, one can also input a placement file to VPR if one desires that an existing placement be routed only.&#8221; - <a class="reference external" href="http://www.eecg.toronto.edu/~vaughn/vpr/vpr.html">http://www.eecg.toronto.edu/~vaughn/vpr/vpr.html</a></p>
+  <div class="section" id="using-vtr">
+<h1>Using VTR<a class="headerlink" href="#using-vtr" title="Permalink to this headline">¶</a></h1>
+<p>&#8220;The Verilog-to-Routing (VTR) project is a world-wide collaborative effort to provide a open-source framework for conducting FPGA architecture and CAD research and development. The VTR design flow takes as input a Verilog description of a digital circuit, and a description of the target FPGA architecture.&#8221; <a class="reference external" href="http://vtr.readthedocs.io/en/latest/">http://vtr.readthedocs.io/en/latest/</a> &#8220;</p>
+<p>This tool uses two inputs such as the architecture file and verilog program, at the end of execution it outputs files that can be used to translate how our FPGA should be programmed based on our architecture.</p>
+<p>On this link : <a class="reference external" href="https://github.com/YangTavares/origin/blob/master/Sphinx/Research/FPGA_project.xml">https://github.com/YangTavares/origin/blob/master/Sphinx/Research/FPGA_project.xml</a> It is possible to see how our architecture is describled in VTR xml based language.</p>
+<p>To see the output files desired such as route and place file, go to &#8220;vtr_flow&#8221; program and run as</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="p">.</span><span class="o">/</span><span class="n">run_vtr_flow</span><span class="p">.</span><span class="n">pl</span> <span class="o">&lt;</span><span class="n">circuit_file</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">architecture_file</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">route_file</span> <span class="o">&lt;</span><span class="n">route_file_name</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">place_file</span> <span class="o">&lt;</span><span class="n">place_file_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">route_chan_width</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>If the VTR is giving an error at the end, it is probably the VTR viewer not working propperly. So just change to the &#8220;VPR&#8221; directory and run it with the files generated at the &#8220;temp&#8221; directory generated where you ran VTR. To run VPR, you need to put as input the architecture file and a blif file, for example:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="p">.</span><span class="o">/</span><span class="n">vpr</span> <span class="p">..</span><span class="o">/</span><span class="n">vtr_flow</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">FPGA_project</span><span class="p">.</span><span class="n">xml</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">VTR_testFiles</span><span class="o">/</span><span class="n">temp</span><span class="o">/</span><span class="n">adder_160bits</span><span class="p">.</span><span class="n">pre</span><span class="o">-</span><span class="n">vpr</span><span class="p">.</span><span class="n">blif</span> <span class="o">--</span><span class="n">route_chan_width</span> <span class="mi">16</span>
+</pre></div>
+</div>
 </div>
 
 

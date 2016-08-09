@@ -99,7 +99,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">16-bit Accumulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fpgadecoder.html">FPGA Decoder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tileprogram.html">Programming a Tile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vprprogram.html">Using VPR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vprprogram.html">Using VTR</a></li>
 </ul>
 </li>
 </ul>
@@ -150,7 +150,7 @@
             
   <div class="section" id="bit-accumulator">
 <h1>16-bit Accumulator<a class="headerlink" href="#bit-accumulator" title="Permalink to this headline">¶</a></h1>
-<p>A 16-bit Accumulator is used to interface with the &#8220;Write INs&#8221; of the SRAM manager, it is going to reduce the Inputs needed to program the SRAM cells at the FPGA. Also, it is important to have a way to choose which SRAM cells you want to program per time and how to choose then. At the end, use a software to translate your Verilog program into a Place and Route file that will be transformed into our programming logic for the FPGA.</p>
+<p>A 16-bit Accumulator is used to interface with the &#8220;Write INs&#8221; of the SRAM manager, it is going to reduce the Inputs needed to program the SRAM cells at the FPGA.</p>
 <img alt="_images/16accumulator.png" src="_images/16accumulator.png" />
 <p>(Schematic taken from Sue)</p>
 <p>This piece is made of 16 full-adders and flip-flops, each time the clock rises the input bits are added with the previous value.</p>

@@ -1,7 +1,7 @@
 16-bit Accumulator
 ==================
 
-A 16-bit Accumulator is used to interface with the "Write INs" of the SRAM manager, it is going to reduce the Inputs needed to program the SRAM cells at the FPGA. Also, it is important to have a way to choose which SRAM cells you want to program per time and how to choose then. At the end, use a software to translate your Verilog program into a Place and Route file that will be transformed into our programming logic for the FPGA.
+A 16-bit Accumulator is used to interface with the "Write INs" of the SRAM manager, it is going to reduce the Inputs needed to program the SRAM cells at the FPGA. 
 
 .. image:: /Research/FPGAdescription/16accumulator.png
 

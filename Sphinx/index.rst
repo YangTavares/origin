@@ -55,6 +55,17 @@ After all the basic structure is completed, it is needed to elaborate a way to p
    :maxdepth: 2
 
    programming
+
+References
+-------------------------
+
+"CMOS VLSI Design A Circuits and Systems Perspective" - Neil H. E. Weste, David Money Harris
+
+"Architecture and CAD for Deep-Submicron FPGAS" - Jonathan Rose, Vaughn Betz
+
+http://vtr.readthedocs.io/en/latest/
+
+http://rgjournals.com/index.php/ijse/article/viewFile/430/214
   
 Indices and tables
 ===================
