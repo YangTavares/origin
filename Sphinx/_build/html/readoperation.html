@@ -154,8 +154,9 @@
   <div class="section" id="read-operation">
 <h1>Read Operation<a class="headerlink" href="#read-operation" title="Permalink to this headline">¶</a></h1>
 <p>To Read a value from a SRAM cell, it is needed first to pull both BIT and NOTBIT high, and then enable the Sense Amplifiers to output the bit value.</p>
-<img alt="_images/write_operation.png" src="_images/write_operation.png" />
+<img alt="_images/read_op.png" src="_images/read_op.png" />
 <p>(Simulation taken from EzWave)</p>
+<p>It the picture above, there is both a write and read operation happening. First, the &#8220;WRITE_IN0&#8221; is writing a logical 1 at the selected cell when the respective word is enabled. Second, all the bit lines are pulled high with the &#8220;PULL_READ&#8221; being set to a logical 0, since it is controlled by a pmos. Finally, the &#8220;SE&#8221; line is enabled with a logical 0 because it is also controlled by a pmos. The sense amplifiers will eventualy measure which BIT or NOTBIT is higher and them amplify it, showing the data in the cell at the line &#8220;DATA0&#8221;.</p>
 </div>
 
 

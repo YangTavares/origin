@@ -283,3 +283,21 @@ A simple list of numbers to program a counter on a Tile:
 https://github.com/YangTavares/origin/blob/master/Sphinx/signals.txt
 
 A good way to plan those signals is using Excel tool, it is possible to download how the previous signals were planned at: https://github.com/YangTavares/origin/blob/master/Sphinx/Research/Tile_Counter_Bigger_order_invout.xlsx
+
+.. image:: /Research/FPGAdescription/counter_works.png
+
+(Simulation taken from EzWave)
+
+In the picture above it is possible to see a basic counter working with the clock and reset signals.
+
+.. image:: /Research/FPGAdescription/ilustration_1.png
+
+(Simulation taken from EzWave)
+
+The last picture is an example of the signals working as planned on the "signals.txt" file
+
+.. image:: /Research/FPGAdescription/Address_change.png
+
+(Simulation taken from EzWave)
+
+Finally the address of the Decoder inside the tile being changed to program each array of 16 SRAM cells.

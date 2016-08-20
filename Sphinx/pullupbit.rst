@@ -14,3 +14,7 @@ Because we were having an issue with isolated pmos on the layout, we coupled a n
 (Schematic taken from Sue)
 
 Using 32 of them to raise all the "BIT" and "NOTBIT" lines
+
+.. todo::
+
+	The NMOS gate be should connected to ground. If it floats, it is possible to conduct current and (even worse) may cause the PMOS pull-up not to pull to the VDD rail.

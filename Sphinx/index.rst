@@ -56,12 +56,23 @@ After all the basic structure is completed, it is needed to elaborate a way to p
 
    programming
 
+Future Goals
+-------------------------
+
+To finish the FPGA presented on this documentation, it is needed to think about the interface between the output files of the VTR and the FPGA programming bits. After that, test these with the presented schematic and them finish the layout.
+
+It requires much effort to develop and finish an ideal FPGA for testing, until now we have achieved the knowledge presented on this documentation. For future goals, it is needed to explore more efficient architectures to have an impact on modern designs, since it requires a huge team to develop a viable and commercial FPGA, we want to try different things that can expand the mind of the actual designers.
+
 References
 -------------------------
 
 "CMOS VLSI Design A Circuits and Systems Perspective" - Neil H. E. Weste, David Money Harris
 
 "Architecture and CAD for Deep-Submicron FPGAS" - Jonathan Rose, Vaughn Betz
+
+"FPGA Architecture: Survey and Challenges" -  I. Kuon, R. Tessier and J. Rose
+
+"SRAM Design - Overview and Memory Cell Division" - Doug Sheppard
 
 http://vtr.readthedocs.io/en/latest/
 
