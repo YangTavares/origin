@@ -1,0 +1,303 @@
+Programming a Tile
+==================
+
+To program a Tile with the schematics given, it is needed to modify the generated SPICE file of the circuit to generate the signals at the ports that we want. We used PWL (Pulse Wise Linear) piece to generate a controlled pulse as desired (http://www.seas.upenn.edu/~jan/spice/spice.overview.html#Piecewise). To do so, first we need to create a program that converts hexadecimal numbers to binary and then waveforms:
+
+.. 	code-block:: c
+   	:linenos:
+
+   	#define _GNU_SOURCE
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
+	#include <unistd.h>
+	#include <errno.h>
+
+	#define HEX_SIZE	9 // 10-1
+	#define SIGNALS_NUM 39
+
+	int chartohex(char c){
+
+		switch (c){
+			case '0':
+				return 0;
+			case '1':
+				return 1;
+			case '2':
+				return 2;
+			case '3':
+				return 3;
+			case '4':
+				return 4;
+			case '5':
+				return 5;
+			case '6':
+				return 6;
+			case '7':
+				return 7;
+			case '8':
+				return 8;
+			case '9':
+				return 9;
+			case 'A':
+				return 10;
+			case 'B':
+				return 11;
+			case 'C':
+				return 12;
+			case 'D':
+				return 13;
+			case 'E':
+				return 14;
+			case 'F':
+				return 15;
+			case 'a':
+				return 10;
+			case 'b':	
+				return 11;
+			case 'c':
+				return 12;
+			case 'd':
+				return 13;
+			case 'e':
+				return 14;	
+			case 'f':
+				return 15;
+			default:
+				printf("Not valid\n");
+				return 0;
+		}
+		
+	}
+
+	int main(int argc, char *argv[]){
+
+	    int i = 1, j = 0;
+	    int currentnumber;
+		int result;
+		int t=100;
+		int getchange;
+		
+		const char *names[SIGNALS_NUM+2];
+		names[0] = "Write_IN0";
+		names[1] = "Write_IN1";
+		names[2] = "Write_IN2";
+		names[3] = "Write_IN3";
+		names[4] = "Write_IN4";
+		names[5] = "Write_IN5";
+		names[6] = "Write_IN6";
+		names[7] = "Write_IN7";
+		names[8] = "Write_IN8";
+		names[9] = "Write_IN9";
+		names[10] = "Write_IN10";
+		names[11] = "Write_IN11";
+		names[12] = "Write_IN12";
+		names[13] = "Write_IN13";
+		names[14] = "Write_IN14";
+		names[15] = "Write_IN15";
+		names[16] = "F_Decoder";
+		names[17] = "E_Decoder";
+		names[18] = "D_Decoder";
+		names[19] = "C_Decoder";
+		names[20] = "Write_Enable";
+		names[21] = "Enable_Decoder";
+		names[22] = "Pull_Read";
+		names[23] = "SE";
+		names[24] = "IN_0";
+		names[25] = "IN_1";
+		names[26] = "IN_2";
+		names[27] = "IN_3";
+		names[28] = "IN_4";
+		names[29] = "IN_5";
+		names[30] = "IN_6";
+		names[31] = "IN_7";
+		names[32] = "IN_8";
+		names[33] = "IN_9";
+		names[34] = "CLOCK_0";
+		names[35] = "CLOCK_1";
+		names[36] = "CLOCK_2";
+		names[37] = "CLOCK_3";
+		names[38] = "D_Reset";
+		names[39] = "B_Decoder";
+			
+			
+
+		char cwd[1024];
+		char ch;
+		char line[256];
+		
+		FILE  *newfile;
+		FILE  *inputfile;
+		int number;
+		int testcount=0;
+		
+		int sizeoffile=0;
+		int currenthex = HEX_SIZE;
+		int amountofshift;
+
+		char c;
+		
+		inputfile = fopen(argv[1],"r");
+		
+		printf("The contents of %s file are :\n", argv[1]);
+			
+		while (fgets(line, sizeof(line), inputfile)) {
+			int i = 0;
+			printf("%s",line);
+			/*
+			for(i=0;i<=10;i++){
+				c = line[i];
+				printf("line%d-->%c\n",i, c);
+				number = chartohex(c);
+				printf("NUMERO--->%d\n",number);
+			}		
+			*/
+			sizeoffile++;
+		}	
+		//printf("sizeoffile--->%d\n",sizeoffile);
+		fclose(inputfile);
+			
+		if (getcwd(cwd, sizeof(cwd)) != NULL)
+			fprintf(stdout, "Current working dir: %s\n", cwd);
+	    else
+	        perror("getcwd() error");
+
+	    strcat(cwd,"/");
+	    strcat(cwd,"resultfile");
+	    newfile = fopen(cwd,"w");
+		if (newfile == NULL)
+		perror("failed to open file\n");
+
+		for(j=0;j<=SIGNALS_NUM;j++){
+			//printf(names[j]);
+			inputfile = fopen(argv[1],"r");
+			
+			fgets(line, sizeof(line), inputfile);
+			fprintf(newfile,"V%d %s VSS PWL(",j,names[j]);
+			getchange=0;
+			c = line[currenthex];
+			//printf("C--->%c\n",c);
+			currentnumber = chartohex(c);
+			amountofshift = j%4;
+			currentnumber = currentnumber >> amountofshift;
+			result = currentnumber & 1;
+			//printf("%d",result);
+			if(result==1){
+				fprintf(newfile,"%dns%s",0," 1.2 ");
+				getchange = 1;
+			}
+			if(result==0){
+				fprintf(newfile,"%dns%s",0," 0 ");
+				getchange = 0;
+			}
+			for(i=2;i<sizeoffile+1;i++){
+				fgets(line, sizeof(line), inputfile);
+				c = line[currenthex];
+				//printf("C--->%c\n",c);
+				currentnumber = chartohex(c);
+				amountofshift = j%4;
+				currentnumber = currentnumber >> amountofshift;
+				result = currentnumber & 1;
+				//printf("%d",result);
+				if(result==1){
+						if(getchange==0){
+								fprintf(newfile,"%dns%s",(t*(i-1)-1)," 0 ");
+						}
+						fprintf(newfile,"%dns%s",t*(i-1)," 1.2 ");
+						getchange = 1;
+				}
+				if(result==0){
+						if(getchange==1){
+								fprintf(newfile,"%dns%s",(t*(i-1)-1)," 1.2 ");
+						}
+						fprintf(newfile,"%dns%s",t*(i-1)," 0 ");
+						getchange = 0;
+				}
+			}
+			fprintf(newfile,")\n");
+			fclose(inputfile);
+			testcount++;
+			if(testcount>3){
+				testcount=0;
+				currenthex=currenthex-1;
+			}		
+		}
+		fclose(newfile);
+		
+		
+
+	}
+
+In this case, we are hardcoding the ports such as "Write_IN0", to be attached to a file describing each bit at the simulation, for example: 
+
+4000C00000
+
+| "Write_IN0" = 0 
+| "Write_IN1" = 0 
+| "Write_IN2" = 0
+| "Write_IN3" = 0
+| "Write_IN4" = 0
+| "Write_IN5" = 0
+| "Write_IN6" = 0
+| "Write_IN7" = 0
+| "Write_IN8" = 0
+| "Write_IN9" = 0
+| "Write_IN10" = 0
+| "Write_IN11" = 0
+| "Write_IN12" = 0
+| "Write_IN13" = 0
+| "Write_IN14" = 0
+| "Write_IN15" = 0
+| "F_Decoder" = 0
+| "E_Decoder" = 0
+| "D_Decoder" = 0
+| "C_Decoder" = 0
+| "Write_Enable" = 0
+| "Enable_Decoder" = 0
+| "Pull_Read" = 1
+| "SE" = 1
+| "IN_0" = 0
+| "IN_1" = 0
+| "IN_2" = 0
+| "IN_3" = 0
+| "IN_4" = 0
+| "IN_5" = 0
+| "IN_6" = 0
+| "IN_7" = 0
+| "IN_8" = 0
+| "IN_9" = 0
+| "CLOCK_0" = 0
+| "CLOCK_1" = 0
+| "CLOCK_2" = 0
+| "CLOCK_3" = 0
+| "D_Reset" = 1
+| "B_Decoder" = 0
+
+
+If the user wants to use other signals or change the order, just change the vector components at the program. There are 2 defines at the beginning which corresponds to the number of Hexadecimals in one tuple minus one, and the number of signals.
+
+After you compile this C program, just attach the signals file and run "./a.out signals.txt". The output will be named "resultfile" and you can include in the SPICE file with ".include 'resultfile'".
+
+A simple list of numbers to program a counter on a Tile:
+
+https://github.com/YangTavares/origin/blob/master/Sphinx/signals.txt
+
+A good way to plan those signals is using Excel tool, it is possible to download how the previous signals were planned at: https://github.com/YangTavares/origin/blob/master/Sphinx/Research/Tile_Counter_Bigger_order_invout.xlsx
+
+.. image:: /Research/FPGAdescription/counter_works.png
+
+(Simulation taken from EzWave)
+
+In the picture above it is possible to see a basic counter working with the clock and reset signals.
+
+.. image:: /Research/FPGAdescription/ilustration_1.png
+
+(Simulation taken from EzWave)
+
+The last picture is an example of the signals working as planned on the "signals.txt" file
+
+.. image:: /Research/FPGAdescription/Address_change.png
+
+(Simulation taken from EzWave)
+
+Finally the address of the Decoder inside the tile being changed to program each array of 16 SRAM cells.

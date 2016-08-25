@@ -1,0 +1,12 @@
+Programming
+==================
+
+There are several steps to program the FPGA, first of all is trying to use the less ports as we can to achieve best the use of I/O pads. Also, it is important to have a way to choose which SRAM cells you want to program per time and how to choose then. At the end, use a software to translate your Verilog program into a Place and Route file that will be transformed into our programming logic for the FPGA.
+
+.. toctree::
+   :maxdepth: 2
+
+   16accumulator
+   fpgadecoder
+   tileprogram
+   vprprogram
